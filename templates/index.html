@@ -3,14 +3,14 @@
 
 <head>
     <title>System Metrics Dashboard</title>
-    <script src="https://cdn.jsdelivr.net/npm/iro.js@5.5.3/dist/iro.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <style>
         .green {
             color: green;
         }
 
-        .yellow {
-            color: yellow;
+        .blueviolet {
+            color: blueviolet;
         }
 
         .red {
@@ -56,9 +56,9 @@
                     const setColor = (element, value) => {
                         if (value >= 1 && value <= 30) {
                             element.className = 'green';
-                        } else if (value > 30 && value <= 70) {
-                            element.className = 'yellow';
-                        } else if (value > 70 && value <= 100) {
+                        } else if (value > 30 && value < 80) {
+                            element.className = 'blueviolet';
+                        } else if (value >= 80 && value <= 100) {
                             element.className = 'red';
                         } else {
                             element.className = ''; // Clear any existing classes if not in the specified ranges
