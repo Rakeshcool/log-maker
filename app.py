@@ -1,5 +1,6 @@
 import psutil
 from flask import Flask, render_template, jsonify
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -17,7 +18,8 @@ def get_metrics():
 
     message = None
     if cpu_metric > 80 or mem_metric > 80 or disk_metric > 80:
-        message = "Scale up your system: Device usage is more than 80%."
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        message = f"Scale up your system: Device usage is more than 80% at {timestamp}."
 
     return jsonify(
         cpu_metric=cpu_metric,
@@ -28,4 +30,4 @@ def get_metrics():
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0")
+    app.run(debug=True)

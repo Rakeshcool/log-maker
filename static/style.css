@@ -1,25 +1,24 @@
 /* Custom CSS styles */
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
-}
 * {
   padding: 0%;
+  text-align: justify;
+  background: whitesmoke;
 }
 
-#cpu-metric {
-  color: blue;
+h1 {
+  text-align: center;
+  background-color: palevioletred;
 }
 
-#mem-metric {
-  color: yellowgreen;
+h2 {
+  text-align: center;
 }
 
-#disk-metric {
-  color: red;
+p {
+  text-align: center;
 }
-
 #usage-message {
-  color: blueviolet;
+  color: red;
   font-weight: bold;
+  font-size: x-large;
 }
