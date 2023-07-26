@@ -7,18 +7,6 @@ body {
   padding: 0%;
 }
 
-#cpu-metric {
-  color: blue;
-}
-
-#mem-metric {
-  color: yellowgreen;
-}
-
-#disk-metric {
-  color: red;
-}
-
 #usage-message {
   color: blueviolet;
   font-weight: bold;

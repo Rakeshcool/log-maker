@@ -4,8 +4,19 @@
 <head>
     <title>System Metrics Dashboard</title>
     <script src="https://cdn.jsdelivr.net/npm/iro.js@5.5.3/dist/iro.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-    <link rel="stylesheet" type="text/css" href="ttps://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <style>
+        .green {
+            color: green;
+        }
+
+        .yellow {
+            color: yellow;
+        }
+
+        .red {
+            color: red;
+        }
+    </style>
 </head>
 
 <body>
@@ -35,6 +46,29 @@
                     document.getElementById('mem-metric').innerText = data.mem_metric;
                     document.getElementById('disk-metric').innerText = data.disk_metric;
                     document.getElementById('usage-message').innerText = data.message;
+
+                    // Get the number elements
+                    const cpuElement = document.getElementById('cpu-metric');
+                    const memElement = document.getElementById('mem-metric');
+                    const diskElement = document.getElementById('disk-metric');
+
+                    // Function to set color based on the metric value
+                    const setColor = (element, value) => {
+                        if (value >= 1 && value <= 30) {
+                            element.className = 'green';
+                        } else if (value > 30 && value <= 70) {
+                            element.className = 'yellow';
+                        } else if (value > 70 && value <= 100) {
+                            element.className = 'red';
+                        } else {
+                            element.className = ''; // Clear any existing classes if not in the specified ranges
+                        }
+                    };
+
+                    // Set color for each metric
+                    setColor(cpuElement, data.cpu_metric);
+                    setColor(memElement, data.mem_metric);
+                    setColor(diskElement, data.disk_metric);
                 })
                 .catch(error => console.error('Error fetching metrics:', error));
         }
@@ -43,6 +77,9 @@
         updateMetrics();
         setInterval(updateMetrics, 2000);
     </script>
+
+
+
 </body>
 
 </html>
