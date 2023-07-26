@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>System Metrics Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/iro.js@5.5.3/dist/iro.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" type="text/css" href="ttps://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+</head>
+
+<body>
+    <h1>System Metrics Dashboard</h1>
+
+    <!-- CPU Usage Gauge -->
+    <h2>CPU Usage: <span id="cpu-metric">Loading...</span>%</h2>
+    <div id="cpu-gauge"></div>
+
+    <!-- Memory Usage Gauge -->
+    <h2>Memory Usage: <span id="mem-metric">Loading...</span>%</h2>
+    <div id="mem-gauge"></div>
+
+    <!-- Disk Usage Gauge -->
+    <h2>Disk Usage: <span id="disk-metric">Loading...</span>%</h2>
+    <div id="disk-gauge"></div>
+
+    <!-- Usage Message -->
+    <p id="usage-message"></p>
+
+    <script>
+        function updateMetrics() {
+            fetch('/get_metrics')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('cpu-metric').innerText = data.cpu_metric;
+                    document.getElementById('mem-metric').innerText = data.mem_metric;
+                    document.getElementById('disk-metric').innerText = data.disk_metric;
+                    document.getElementById('usage-message').innerText = data.message;
+                })
+                .catch(error => console.error('Error fetching metrics:', error));
+        }
+
+        // Fetch data initially and update metrics every 2 seconds
+        updateMetrics();
+        setInterval(updateMetrics, 2000);
+    </script>
+</body>
+
+</html>
