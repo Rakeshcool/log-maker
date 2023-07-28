@@ -2,20 +2,23 @@
 * {
   padding: 0%;
   text-align: justify;
-  background: whitesmoke;
+  background: hsl(216, 28%, 7%);
 }
 
 h1 {
   text-align: center;
   background-color: palevioletred;
+  color: white;
 }
 
 h2 {
   text-align: center;
+  color: white;
 }
 
 p {
   text-align: center;
+  color: white;
 }
 #usage-message {
   color: red;
